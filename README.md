@@ -2,6 +2,9 @@
 
 Este projeto faz a carga de dados dos personagens da série Rick and Morty para um banco de dados PostgreSQL, utilizando Python e pandas.
 
+Abaixo uma imagem da tabela no PosgreSQL
+![alt text](image.png)
+
 ## Objetivo
 
 Automatizar o processo de ingestão de dados de personagens, facilitando análises e visualizações futuras.
