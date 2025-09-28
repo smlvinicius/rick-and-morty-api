@@ -73,7 +73,7 @@ Você pode adaptar o script para inserir outros campos ou trabalhar com diferent
 Este projeto é livre para uso educacional e pessoal.
 
 ## Fluxograma do Funcionamento dos Códigos `.py`
-![alt text](fluxorama.png)
+![alt text](fluxograma.png)
 
 
 ```
