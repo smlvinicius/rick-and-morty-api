@@ -72,5 +72,21 @@ Você pode adaptar o script para inserir outros campos ou trabalhar com diferent
 
 Este projeto é livre para uso educacional e pessoal.
 
+## Fluxograma do Funcionamento dos Códigos `.py`
+
+```mermaid
+flowchart TD
+    A[Início do Script] --> B[Leitura do CSV com pandas]
+    B --> C[Conexão com PostgreSQL via psycopg2]
+    C --> D[Criação da tabela characters (se não existir)]
+    D --> E[Loop: Para cada linha do CSV]
+    E --> F[Insere dados na tabela]
+    F --> G[Commit das alterações]
+    G --> H[Fecha conexão]
+    H --> I[Fim: Dados carregados no PostgreSQL]
+```
+
+> O script lê o arquivo CSV, conecta ao banco, cria a tabela se necessário, insere os dados e finaliza a conexão.
+
 ---
 Sinta-se à vontade para contribuir ou sugerir melhorias!
