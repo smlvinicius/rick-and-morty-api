@@ -7,9 +7,9 @@ df = pd.read_csv('rick_and_morty_characters_transformed.csv')
 # Conexão com o PostgreSQL
 conn = psycopg2.connect(
     host="localhost",
-    database="postgres",
-    user="postgres",
-    password="Sml@2998"
+    database="seubanco",
+    user="seuusuario",
+    password="suasenha"
 )
 cur = conn.cursor()
 
