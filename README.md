@@ -1,4 +1,4 @@
-# Rick and Morty API - Carga de dados no PosgreSQL
+# Rick and Morty API - Carga de dados no PostgreSQL
 
 Este projeto faz a carga de dados dos personagens da série Rick and Morty para um banco de dados PostgreSQL, utilizando Python e pandas.
 
