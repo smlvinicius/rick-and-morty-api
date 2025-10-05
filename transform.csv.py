@@ -4,19 +4,17 @@ import ast
 # Lê o CSV extraído
 df = pd.read_csv('rick_and_morty_characters.csv')
 
-# Transforma os dados extraídos
-def extract_name(field, default=''):
-    if isinstance(field, dict) and 'name' in field:
-        return field['name']
-    return default
+# Transforma as colunas 'origin' e 'location' de strings para dicionários
+df['origin'] = df['origin'].apply(ast.literal_eval)  # Converte string para dicionário
+df['location'] = df['location'].apply(ast.literal_eval)  # Converte string para dicionário
 
-# Usa o DataFrame já carregado do CSV
-df['origin_name'] = df['origin'].apply(lambda x: extract_name(x))
-df['location_name'] = df['location'].apply(lambda x: extract_name(x))
+# Extrai apenas o nome do local de origem e localização atual
+df['origin_name'] = df['origin'].apply(lambda x: x['name']) # Extrai o nome do local de origem
+df['location_name'] = df['location'].apply(lambda x: x['name']) # Extrai o nome do local de localização atual
 
-# Seleciona apenas as colunas desejadas
+# Seleciona as colunas relevantes para o carregamento no banco de dados
 df_transformed = df[['id', 'name', 'status', 'species', 'gender', 'origin_name', 'location_name']]
 
-# Salva o resultado transformado
+# Salva o Dataframe transformado em um novo arquivo CSV
 df_transformed.to_csv('rick_and_morty_characters_transformed.csv', index=False)
-print("Extração e transformação concluídas em 'rick_and_morty_characters_transformed.csv'")
+print("Transformação concluída e salva em 'rick_and_morty_characters_transformed.csv'")
