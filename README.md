@@ -32,9 +32,9 @@ pip install pandas psycopg2
 ```python
 conn = psycopg2.connect(
     host="localhost",
-    database="rickmortydb",
-    user="seuusuario",
-    password="suasenha"
+    database="seu_banco",
+    user="seu_usuario",
+    password="sua_senha"
 )
 ```
 

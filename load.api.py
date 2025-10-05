@@ -11,30 +11,43 @@ conn = psycopg2.connect(
     user="seu_usuario",
     password="sua_senha"
 )
-cur = conn.cursor()
+cursor = conn.cursor()
 
-# Cria a tabela (se não existir)
-cur.execute("""
-CREATE TABLE IF NOT EXISTS characters (
-    id INTEGER PRIMARY KEY,
-    name TEXT,
-    status TEXT,
-    species TEXT,
-    gender TEXT,
-    origin_name TEXT,
-    location_name TEXT
-)
+cursor = conn.cursor()
+
+# Cria a tabela no banco de dados com as colunas necessárias
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS rick_and_morty_characters (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    status VARCHAR(50),
+    species VARCHAR(50),
+    gender VARCHAR(50),
+    origin_name VARCHAR(100),
+    location_name VARCHAR(100)
+);
 """)
 
-# Insere os dados
-for _, row in df.iterrows():
-    cur.execute("""
-        INSERT INTO characters (id, name, status, species, gender, origin_name, location_name)
+conn.commit()
+print("Tabela criada com sucesso.")
+
+# Insere os dados do DataFrame na tabela do banco de dados
+for index, row in df.iterrows(): # Percorre cada linha do DataFrame
+    cursor.execute(
+        """
+        INSERT INTO rick_and_morty_characters 
+        (id, name, status, species, gender, origin_name, location_name)
         VALUES (%s, %s, %s, %s, %s, %s, %s)
-        ON CONFLICT (id) DO NOTHING
-    """, tuple(row))
+        ON CONFLICT (id) DO NOTHING;
+        """,
+        (
+            row['id'], 
+            row['species'],
+            row['gender'],
+            row['origin_name'],
+            row['location_name']
+        )
+    )
 
 conn.commit()
-cur.close()
-conn.close()
-print("Dados carregados no PostgreSQL!")
+print("Dados inseridos com sucesso.")
